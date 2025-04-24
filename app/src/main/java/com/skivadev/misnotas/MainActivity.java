@@ -19,19 +19,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Configurar Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Mis Notas");
         }
 
-        // Configurar RecyclerView
         RecyclerView recyclerView = findViewById(R.id.notes_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new NotesAdapter(notes, position -> {
-            // Abrir nota para editar
             Intent intent = new Intent(MainActivity.this, NotaActivity.class);
             intent.putExtra("note_title", notes.get(position).getTitle());
             intent.putExtra("note_content", notes.get(position).getContent());
@@ -40,10 +37,8 @@ public class MainActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(adapter);
 
-        // Configurar FloatingActionButton
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-            // Abrir nueva nota
             Intent intent = new Intent(MainActivity.this, NotaActivity.class);
             startActivityForResult(intent, 1);
         });
