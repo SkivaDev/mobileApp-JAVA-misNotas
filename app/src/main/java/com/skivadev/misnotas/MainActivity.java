@@ -59,11 +59,9 @@ public class MainActivity extends AppCompatActivity {
             int position = data.getIntExtra("note_position", -1);
 
             if (position != -1) {
-                // Actualizar nota existente
                 notes.set(position, new Nota(title, content));
             } else {
-                // Agregar nueva nota
-                notes.add(0, new Nota(title, content)); // Agrega al inicio
+                notes.add(0, new Nota(title, content));
             }
             adapter.notifyDataSetChanged();
         }

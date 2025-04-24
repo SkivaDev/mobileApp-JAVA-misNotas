@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class NotaActivity extends AppCompatActivity {
     private EditText titleEditText;
     private EditText contentEditText;
-    private int position = -1; // -1 indica nueva nota
+    private int position = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +21,12 @@ public class NotaActivity extends AppCompatActivity {
         titleEditText = findViewById(R.id.title_edit_text);
         contentEditText = findViewById(R.id.content_edit_text);
 
-        // Configurar la Toolbar
         setSupportActionBar(findViewById(R.id.toolbar));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle("Editar Nota");
         }
 
-        // Verificar si estamos editando una nota existente
         if (getIntent().hasExtra("note_title")) {
             titleEditText.setText(getIntent().getStringExtra("note_title"));
             contentEditText.setText(getIntent().getStringExtra("note_content"));
@@ -48,7 +46,6 @@ public class NotaActivity extends AppCompatActivity {
             saveNote();
             return true;
         } else if (item.getItemId() == android.R.id.home) {
-            // Manejar el botón de retroceso de la Toolbar
             onBackPressed();
             return true;
         }
@@ -75,7 +72,6 @@ public class NotaActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Preguntar si desea guardar antes de salir
         if (!titleEditText.getText().toString().isEmpty() ||
                 !contentEditText.getText().toString().isEmpty()) {
             saveNote();
